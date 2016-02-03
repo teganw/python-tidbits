@@ -1,0 +1,36 @@
+def next_prime(a,last_i):
+  is_prime=1
+  num=primes[a-1]+1
+  for i in primes:
+    if i > num/last_i:
+      break
+    elif num % i == 0:
+      is_prime=0
+      last_i=i
+
+  if is_prime==1:
+    primes.append(num)
+    return num
+  num = num + 2
+  is_prime=1
+
+
+primes = [2,3]
+
+factor=600851475143
+i = 0
+
+
+while (factor > primes[i]): # current biggest factor greater than prime we're using
+  if factor % primes[i] == 0: # factor can't be divided by 1st, 2nd, etc. prime
+    factor = factor / primes[i] # new biggest factor is this one
+    print factor
+    i = 0
+  else:
+    i = i + 1
+
+  if len(primes) < i + 1:
+    next_prime(i,primes[i-1])
+
+
+print "highest factor is %d" % factor
